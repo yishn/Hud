@@ -7,6 +7,6 @@
   "license": "MIT",
   "dependencies": {
     "sprint-js": "^0.1.0",
-    "weather": "^0.1.0"
+    "yql": "^1.0.2"
   }
 }
