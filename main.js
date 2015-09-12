@@ -8,6 +8,8 @@ app.on('window-all-closed', function() { app.quit() })
 
 app.on('ready', function() {
     window = new BrowserWindow({
+        'width': 1000,
+        'height': 1000,
         'resizable': false,
         'skip-taskbar': true,
         'show': false,

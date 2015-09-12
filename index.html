@@ -4,13 +4,31 @@
 
 <meta charset="utf-8">
 <title>Hud</title>
-<script type="text/javascript" src="node_modules/sprint-js/sprint.js"></script>
 <link rel="stylesheet" href="style.css">
+<script>
+
+var remote = require('remote')
+var screen = require('screen')
+var $ = require('sprint-js')
+
+$(window).on('load', function() {
+    var win = remote.getCurrentWindow()
+    var hud = $('#hud')
+    var width = parseInt(hud.width()) + 50
+    var height = parseInt(hud.height()) + 50
+    var screensize = screen.getPrimaryDisplay().workAreaSize
+
+    win.setContentSize(width, height)
+    win.setPosition(screensize.width - width, 0)
+})
+
+</script>
 
 </head>
 <body>
 
-<ul>
+<ul id="hud">
+    <li id="weather">Heidelberg 19°C</li>
     <li id="clock">19:40</li>
     <li id="date">Saturday, 12th September</li>
 </ul>
