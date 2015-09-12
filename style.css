@@ -36,10 +36,9 @@ img {
  * Modules
  */
 
-ul {
+#hud {
     list-style: none;
     float: right;
-    padding: 50px;
 }
 
 #weather {

@@ -14,12 +14,12 @@ var $ = require('sprint-js')
 $(window).on('load', function() {
     var win = remote.getCurrentWindow()
     var hud = $('#hud')
-    var width = parseInt(hud.width()) + 50
-    var height = parseInt(hud.height()) + 50
+    var width = Math.ceil(hud.width())
+    var height = Math.ceil(hud.height())
     var screensize = screen.getPrimaryDisplay().workAreaSize
 
     win.setContentSize(width, height)
-    win.setPosition(screensize.width - width, 0)
+    win.setPosition(screensize.width - width - 50, 50)
 })
 
 </script>
