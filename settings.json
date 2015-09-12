@@ -2,5 +2,9 @@
     "weather": {
         "location": "Backnang, DE",
         "interval": 1800000
+    },
+    "vrn-tram": {
+        "url": "http://efa9-5.vrn.de/dm_rbl/XSLT_DM_REQUEST?language=de&itdLPxx_dmlayout=dm&itdLPxx_realtime=1&useRealtime=1&itdLPxx_dmRefresh=1&timeOffset=3&limit=12&includeCompleteStopSeq=1&depType=stopEvents&typeInfo_dm=stopID&nameInfo_dm=6004256&mode=direct&line=VRN:19033:C:H&line=VRN:19033:C:R&itdLPxx_ie6layout=;",
+        "interval": 60000
     }
 }

@@ -67,3 +67,11 @@ img {
     margin-top: 0;
     font-size: 1.75em;
 }
+
+#tram {
+        opacity: 0;
+        transition: .5s opacity;
+    }
+    #tram.show {
+        opacity: 1;
+}
