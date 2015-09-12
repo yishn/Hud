@@ -1,5 +1,5 @@
 var yql = require('yql')
-var settings = require('../settings')
+var settings = require('../settings').weather
 
 var element
 var codes = [
@@ -55,10 +55,10 @@ var codes = [
 ]
 
 exports.init = function(el) {
-    element = el.html('Loading weather&hellip;')
+    element = el.text('Loading weather…')
 
     exports.update()
-    setInterval(exports.update, settings.weather.interval)
+    setInterval(exports.update, settings.interval)
 }
 
 exports.update = function() {
@@ -66,7 +66,7 @@ exports.update = function() {
         'select * from weather.forecast',
         'where u="c" and woeid in',
         '(select woeid from geo.places(1)',
-        'where text="' + settings.weather.location + '")'
+        'where text="' + settings.location + '")'
     ].join(' '))
 
     query.exec(function(err, data) {
