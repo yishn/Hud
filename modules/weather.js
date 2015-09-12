@@ -1,4 +1,5 @@
 var yql = require('yql')
+var settings = require('../settings')
 
 var element
 var codes = [
@@ -61,8 +62,12 @@ exports.init = function(el) {
 }
 
 exports.update = function() {
-    var query = new yql('select * from weather.forecast where woeid = 636380 and u="c"');
-    // var query = new yql('select * from weather.forecast where woeid = 658421 and u="c"');
+    var query = new yql([
+        'select * from weather.forecast',
+        'where u="c" and woeid in',
+        '(select woeid from geo.places(1)',
+        'where text="' + settings.weather.location + '")'
+    ].join(' '))
 
     query.exec(function(err, data) {
         var location = data.query.results.channel.location
