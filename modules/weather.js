@@ -58,7 +58,7 @@ exports.init = function(el) {
     element = el.html('Loading weather&hellip;')
 
     exports.update()
-    setInterval(exports.update, 1000 * 60 * 60)
+    setInterval(exports.update, settings.weather.interval)
 }
 
 exports.update = function() {

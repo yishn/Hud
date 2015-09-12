@@ -1,5 +1,6 @@
 {
     "weather": {
-        "location": "Backnang, DE"
+        "location": "Backnang, DE",
+        "interval": 1800000
     }
 }
