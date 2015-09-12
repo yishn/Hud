@@ -68,7 +68,8 @@ exports.update = function() {
         var location = data.query.results.channel.location
         var condition = data.query.results.channel.item.condition
 
-        element.html('<i class="wi wi-' + codes[condition.code] + '" title="' + condition.text + '"></i> '
-            + location.city + ', ' + condition.temp + '°C')
+        element.text(location.city + ', ' + condition.temp + '°C')
+            .prepend('<i class="wi wi-' + codes[condition.code] + '" title="' + condition.text + '"></i> ')
+            .addClass('show')
     })
 }
