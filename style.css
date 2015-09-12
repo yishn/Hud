@@ -5,7 +5,7 @@
 
 body, input, button, select, option, textarea {
     font: menu;
-    font-size: 35px;
+    font-size: 20px;
     font-weight: 100;
     line-height: 1.2;
 }
@@ -37,12 +37,16 @@ img {
  */
 
 #hud {
-    list-style: none;
-    float: right;
+        list-style: none;
+        float: right;
+    }
+    body > ul > li {
+        margin: .5em 0;
 }
 
 #weather {
-        font-size: 16px;
+        margin: 0;
+        font-size: .8em;
         font-weight: 600;
         letter-spacing: 1px;
         text-transform: uppercase;
@@ -50,8 +54,16 @@ img {
         transition: .5s opacity;
     }
     #weather.show { opacity: 1 }
-#weather .wi { margin-right: 5px; }
+    #weather .wi {
+        margin-right: 5px;
+}
 
 #clock {
-    font-size: 3em;
+    margin: 0;
+    font-size: 5.5em;
+}
+
+#date {
+    margin-top: 0;
+    font-size: 1.75em;
 }
