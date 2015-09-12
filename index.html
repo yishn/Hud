@@ -12,6 +12,9 @@ var screen = require('screen')
 var $ = require('sprint-js')
 
 $(window).on('load', function() {
+    require('./modules/clock').init($('#clock'))
+
+    // Update window
     var win = remote.getCurrentWindow()
     var hud = $('#hud')
     var width = Math.ceil(hud.width())
@@ -20,6 +23,7 @@ $(window).on('load', function() {
 
     win.setContentSize(width, height)
     win.setPosition(screensize.width - width - 50, 50)
+    win.show()
 })
 
 </script>
@@ -29,7 +33,7 @@ $(window).on('load', function() {
 
 <ul id="hud">
     <li id="weather">Heidelberg 19°C</li>
-    <li id="clock">19:40</li>
+    <li id="clock"></li>
     <li id="date">Saturday, 12th September</li>
 </ul>
 
