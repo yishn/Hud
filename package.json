@@ -1,0 +1,12 @@
+{
+  "name": "hud",
+  "productName": "Hud",
+  "version": "0.1.0",
+  "author": "Yichuan Shen",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "sprint-js": "^0.1.0",
+    "weather": "^0.1.0"
+  }
+}
