@@ -13,6 +13,7 @@ var $ = require('sprint-js')
 
 $(window).on('load', function() {
     require('./modules/clock').init($('#clock'))
+    require('./modules/date').init($('#date'))
 
     // Update window
     var win = remote.getCurrentWindow()
@@ -34,7 +35,7 @@ $(window).on('load', function() {
 <ul id="hud">
     <li id="weather">Heidelberg 19°C</li>
     <li id="clock"></li>
-    <li id="date">Saturday, 12th September</li>
+    <li id="date"></li>
 </ul>
 
 </body>
