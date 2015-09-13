@@ -21,7 +21,7 @@ body, a {
 body {
     color: white;
     text-align: right;
-    text-shadow: 0 0 20px rgba(0, 0, 0, .2);
+    text-shadow: 0 0 15px rgba(0, 0, 0, .2);
 }
 
 a, img {

@@ -45,11 +45,11 @@ exports.request = function(callback) {
         var dom = $(/<body[^>]*?>([^]*?)<\/body>/.exec(body)[1].trim())
         var name = dom.find('input#rplc0').val()
         var d = new Date()
-        var items = dom.find('tr[id^="journeyRow_"]').map(function() {
+        var items = dom.find('tr[id^="journeyRow_"]').dom.map(function(item) {
             return {
-                time: new Date(d.toDateString() + ' ' + this.find('.time').text().trim()),
-                id: this.find('.train + .train a').text().trim(),
-                destination: this.find('.route .bold a').text().trim()
+                time: new Date(d.toDateString() + ' ' + $(item).find('.time').text().trim()),
+                id: $(item).find('.train + .train a').text().trim(),
+                destination: $(item).find('.route .bold a').text().trim()
             }
         })
 
