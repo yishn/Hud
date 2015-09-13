@@ -68,17 +68,17 @@ img {
     font-size: 1.75em;
 }
 
-#db {
+#train {
         line-height: 2;
         opacity: 0;
         transition: .5s opacity;
     }
-    #db.show { opacity: 1; }
-    #db em {
+    #train.show { opacity: 1; }
+    #train em {
         opacity: .7;
         font-style: normal;
     }
-    #db strong {
+    #train strong {
         padding: 0 5px;
         margin: 0 5px;
         background: white;
