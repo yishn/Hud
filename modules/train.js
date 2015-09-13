@@ -1,6 +1,6 @@
 var $ = require('sprint-js')
 var request = require('request')
-var settings = require('../settings').db
+var settings = require('../settings').train
 
 var element
 
