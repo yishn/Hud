@@ -16,6 +16,7 @@ $(window).on('load', function() {
     require('./modules/weather').init($('#weather'))
     require('./modules/clock').init($('#clock'))
     require('./modules/date').init($('#date'))
+    require('./modules/calendar').init($('#calendar'))
     require('./modules/train').init($('#train'))
 
     // Update window
@@ -48,6 +49,7 @@ $(window).on('keydown', function(e) {
     <li id="weather">Heidelberg 19°C</li>
     <li id="clock"></li>
     <li id="date"></li>
+    <li id="calendar"></li>
     <li id="train"></li>
 </ul>
 
