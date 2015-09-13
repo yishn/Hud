@@ -23,7 +23,7 @@ exports.update = function() {
         var display = []
 
         items.forEach(function(item) {
-            var destination = item.destination.split(' ')[0].replace(',', '').trim()
+            var destination = item.destination.split(',')[0].trim()
             var id = item.id.split(' ').map(function(x) {
                 if (isNaN(parseInt(x))) return x.length == 0 ? '' : x[0].toUpperCase()
                 else return x
