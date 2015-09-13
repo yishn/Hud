@@ -25,7 +25,8 @@ exports.update = function() {
         items.forEach(function(item) {
             var destination = item.destination.split(' ')[0].replace(',', '').trim()
             var id = item.id.split(' ').map(function(x) {
-                return x.length == 0 ? '' : x[0].toUpperCase()
+                if (isNaN(parseInt(x))) return x.length == 0 ? '' : x[0].toUpperCase()
+                else return x
             }).join('')
             display.push(item.time + 'm <strong>' + id + '</strong> ' + destination)
         })
