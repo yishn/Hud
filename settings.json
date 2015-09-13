@@ -5,6 +5,7 @@
     },
     "db": {
         "station": "Schwetzinger Terrasse",
+        "threshold": 10,
         "interval": 60000
     }
 }

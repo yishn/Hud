@@ -17,7 +17,7 @@ exports.update = function() {
 
         var items = data.items.filter(function(x) {
             x.time = Math.round((x.time - new Date()) / 1000 / 60)
-            return x.time <= 10 && x.time > 0
+            return x.time <= settings.threshold && x.time > 0
         })
 
         var display = []
@@ -44,13 +44,12 @@ exports.request = function(callback) {
 
         var dom = $(/<body[^>]*?>([^]*?)<\/body>/.exec(body)[1].trim())
         var name = dom.find('input#rplc0').val()
-        var domItems = dom.find('tr[id^="journeyRow_"]')
         var d = new Date()
-        var items = domItems.dom.map(function(tr) {
+        var items = dom.find('tr[id^="journeyRow_"]').map(function() {
             return {
-                time: new Date(d.toDateString() + ' ' + $(tr).find('.time').text().trim()),
-                id: $(tr).find('.train + .train a').text().trim(),
-                destination: $(tr).find('.route .bold a').text().trim()
+                time: new Date(d.toDateString() + ' ' + this.find('.time').text().trim()),
+                id: this.find('.train + .train a').text().trim(),
+                destination: this.find('.route .bold a').text().trim()
             }
         })
 
