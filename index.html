@@ -16,13 +16,12 @@ $(window).on('load', function() {
     require('./modules/weather').init($('#weather'))
     require('./modules/clock').init($('#clock'))
     require('./modules/date').init($('#date'))
-    require('./modules/vrn-tram').init($('#tram'))
+    require('./modules/db').init($('#tram'))
 
     // Update window
     var win = remote.getCurrentWindow()
     var hud = $('#hud')
-    var width = Math.ceil(hud.width()) + 10
-    var height = Math.ceil(hud.height()) + 10
+    var width = Math.ceil(hud.width()) + 30
     var screensize = screen.getPrimaryDisplay().workAreaSize
 
     win.setContentSize(width, height)
