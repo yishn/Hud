@@ -5,7 +5,7 @@ var settings = require('../settings').db
 var element
 
 exports.init = function(el) {
-    element = el.text('Loading information…')
+    element = el
 
     exports.update()
     setInterval(exports.update, settings.interval)
@@ -15,8 +15,20 @@ exports.update = function() {
     exports.request(function(data) {
         if (!data) return
 
-        console.log(data)
-        element.text(data.name).addClass('show')
+        var items = data.items.filter(function(x) {
+            x.time = Math.round((x.time - new Date()) / 1000 / 60)
+            return x.time <= 10
+        })
+
+        var display = []
+
+        items.forEach(function(item) {
+            var id = item.id.split(' ')
+            id = id[id.length - 1]
+            display.push(item.time + 'm <strong>' + id + '</strong> ' + item.destination.split(' ')[0])
+        })
+
+        element.html(display.join('<br>')).addClass('show')
     })
 }
 

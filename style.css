@@ -68,10 +68,15 @@ img {
     font-size: 1.75em;
 }
 
-#tram {
+#db {
         opacity: 0;
         transition: .5s opacity;
     }
-    #tram.show {
-        opacity: 1;
+    #db.show { opacity: 1; }
+    #db strong {
+        padding: 0 5px;
+        margin: 0 5px;
+        background: white;
+        color: #333;
+        font-weight: bold;
 }

@@ -16,7 +16,7 @@ $(window).on('load', function() {
     require('./modules/weather').init($('#weather'))
     require('./modules/clock').init($('#clock'))
     require('./modules/date').init($('#date'))
-    require('./modules/db').init($('#tram'))
+    require('./modules/db').init($('#db'))
 
     // Update window
     var win = remote.getCurrentWindow()
@@ -38,7 +38,7 @@ $(window).on('load', function() {
     <li id="weather">Heidelberg 19°C</li>
     <li id="clock"></li>
     <li id="date"></li>
-    <li id="tram"></li>
+    <li id="db"></li>
 </ul>
 
 </body>
