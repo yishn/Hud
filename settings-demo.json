@@ -1,0 +1,16 @@
+{
+    "weather": {
+        "location": "Heidelberg, DE",
+        "interval": 1800000
+    },
+    "calendar": {
+        "url": [],
+        "interval": 3600000
+    },
+    "train": {
+        "station": "Bunsengymnasium, Heidelberg",
+        "fadeout": 4,
+        "threshold": 10,
+        "interval": 60000
+    }
+}
