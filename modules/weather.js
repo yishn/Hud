@@ -70,6 +70,11 @@ exports.update = function() {
     ].join(' '))
 
     query.exec(function(err, data) {
+        if (err) {
+            element.text(settings.location)
+            return
+        }
+
         var location = data.query.results.channel.location
         var condition = data.query.results.channel.item.condition
 
