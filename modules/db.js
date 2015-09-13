@@ -17,15 +17,16 @@ exports.update = function() {
 
         var items = data.items.filter(function(x) {
             x.time = Math.round((x.time - new Date()) / 1000 / 60)
-            return x.time <= 10
+            return x.time <= 10 && x.time > 0
         })
 
         var display = []
 
         items.forEach(function(item) {
+            var destination = item.destination.split(' ')[0].replace(',', '').trim()
             var id = item.id.split(' ')
             id = id[id.length - 1]
-            display.push(item.time + 'm <strong>' + id + '</strong> ' + item.destination.split(' ')[0])
+            display.push(item.time + 'm <strong>' + id + '</strong> ' + destination)
         })
 
         element.html(display.join('<br>')).addClass('show')

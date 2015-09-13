@@ -69,6 +69,7 @@ img {
 }
 
 #db {
+        line-height: 2;
         opacity: 0;
         transition: .5s opacity;
     }
