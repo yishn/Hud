@@ -20,7 +20,5 @@ app.on('ready', function() {
     // window.toggleDevTools()
 
     window.on('closed', function() { window = null })
-    // window.webContents.on('will-navigate', function(e) { e.preventDefault() })
-
     window.loadUrl('file://' + __dirname + '/index.html')
 })
