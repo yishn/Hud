@@ -6,7 +6,7 @@
 body, input, button, select, option, textarea {
     font: menu;
     font-size: 20px;
-    font-weight: 100;
+    font-weight: lighter;
     line-height: 1.2;
 }
 
@@ -47,7 +47,7 @@ img {
 #weather {
         margin: 0;
         font-size: .8em;
-        font-weight: 600;
+        font-weight: normal;
         letter-spacing: 1px;
         text-transform: uppercase;
         opacity: 0;
