@@ -24,9 +24,19 @@ $(window).on('load', function() {
     var width = Math.ceil(hud.width()) + 30
     var screensize = screen.getPrimaryDisplay().workAreaSize
 
-    win.setContentSize(width, screensize.height)
-    win.setPosition(screensize.width - width - 30, 30)
+    win.setBounds({
+        width: width,
+        height: screensize.height,
+        x: screensize.width - width - 30,
+        y: 30
+    })
     win.show()
+})
+
+$(window).on('keydown', function(e) {
+    if (e.keyCode == 116) {
+        location.reload()
+    }
 })
 
 </script>
