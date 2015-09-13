@@ -11,13 +11,12 @@
 var remote = require('remote')
 var screen = require('screen')
 var $ = require('sprint-js')
+var settings = require('./settings')
 
 $(window).on('load', function() {
-    require('./modules/weather').init($('#weather'))
-    require('./modules/clock').init($('#clock'))
-    require('./modules/date').init($('#date'))
-    require('./modules/calendar').init($('#calendar'))
-    require('./modules/train').init($('#train'))
+    settings.activated.forEach(function(x) {
+        require('./modules/' + x).init($('#' + x))
+    })
 
     // Update window
     var win = remote.getCurrentWindow()
@@ -46,7 +45,7 @@ $(window).on('keydown', function(e) {
 <body>
 
 <ul id="hud">
-    <li id="weather">Heidelberg 19°C</li>
+    <li id="weather"></li>
     <li id="clock"></li>
     <li id="date"></li>
     <li id="calendar"></li>

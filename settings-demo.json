@@ -12,5 +12,6 @@
         "fadeout": 4,
         "threshold": 10,
         "interval": 60000
-    }
+    },
+    "activated": ["weather", "clock", "date", "calendar", "train"]
 }
