@@ -14,6 +14,7 @@ var settings = require('./settings')
 
 $(window).on('load', function() {
     settings.activated.forEach(function(x) {
+        $('#hud').append($('<li></li>').attr('id', x))
         require('./modules/' + x).init($('#' + x))
     })
 
@@ -33,9 +34,7 @@ $(window).on('load', function() {
 })
 
 $(window).on('keydown', function(e) {
-    if (e.keyCode == 116) {
-        location.reload()
-    }
+    if (e.keyCode == 116) location.reload()
 })
 
 </script>
@@ -43,13 +42,7 @@ $(window).on('keydown', function(e) {
 </head>
 <body>
 
-<ul id="hud">
-    <li id="weather"></li>
-    <li id="clock"></li>
-    <li id="date"></li>
-    <li id="calendar"></li>
-    <li id="train"></li>
-</ul>
+<ul id="hud"></ul>
 
 </body>
 </html>
