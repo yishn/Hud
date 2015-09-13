@@ -28,7 +28,11 @@ exports.update = function() {
                 if (isNaN(parseInt(x))) return x.length == 0 ? '' : x[0].toUpperCase()
                 else return x
             }).join('')
-            display.push(item.time + 'm <strong>' + id + '</strong> ' + destination)
+
+            var string = item.time + 'm <strong>' + id + '</strong> ' + destination
+            if (item.time <= settings.fadeout) string = '<em>' + string + '</em>'
+
+            display.push(string)
         })
 
         element.html(display.join('<br>')).addClass('show')

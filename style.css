@@ -74,6 +74,10 @@ img {
         transition: .5s opacity;
     }
     #db.show { opacity: 1; }
+    #db em {
+        opacity: .7;
+        font-style: normal;
+    }
     #db strong {
         padding: 0 5px;
         margin: 0 5px;
