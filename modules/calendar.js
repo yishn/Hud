@@ -38,7 +38,7 @@ exports.request = function(callback) {
             return
         }
 
-        var d = new Date(2015, 9, 13)
+        var d = new Date()
 
         var response = parseICS(body).filter(function(x) {
             return x.type == 'VEVENT'
