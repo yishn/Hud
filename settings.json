@@ -3,7 +3,9 @@
         "location": "Backnang, DE",
         "interval": 1800000
     },
-    "db": {
+    "calendar": {
+        "interval": 3600000
+    },
     "train": {
         "station": "Schwetzinger Terrasse",
         "fadeout": 4,
