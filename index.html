@@ -24,8 +24,8 @@ $(window).on('load', function() {
     var width = Math.ceil(hud.width()) + 30
     var screensize = screen.getPrimaryDisplay().workAreaSize
 
-    win.setContentSize(width, height)
-    win.setPosition(screensize.width - width - 40, 40)
+    win.setContentSize(width, screensize.height)
+    win.setPosition(screensize.width - width - 30, 30)
     win.show()
 })
 
