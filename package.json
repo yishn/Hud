@@ -6,9 +6,9 @@
   "main": "main.js",
   "license": "MIT",
   "dependencies": {
+    "ics-parser": "^0.1.5",
     "request": "^2.61.0",
     "sprint-js": "^0.1.0",
-    "vdata-parser": "^0.1.4",
     "weather-icons": "^1.3.2",
     "yql": "^1.0.2"
   }
