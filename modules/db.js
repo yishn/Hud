@@ -32,9 +32,10 @@ exports.request = function(callback) {
         var dom = $(/<body[^>]*?>([^]*?)<\/body>/.exec(body)[1].trim())
         var name = dom.find('input#rplc0').val()
         var domItems = dom.find('tr[id^="journeyRow_"]')
+        var d = new Date()
         var items = domItems.dom.map(function(tr) {
             return {
-                time: $(tr).find('.time').text().trim(),
+                time: new Date(d.toDateString() + ' ' + $(tr).find('.time').text().trim()),
                 id: $(tr).find('.train + .train a').text().trim(),
                 destination: $(tr).find('.route .bold a').text().trim()
             }
