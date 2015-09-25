@@ -43,12 +43,13 @@ exports.request = function(callback) {
         var response = parseICS(body).filter(function(x) {
             return x.type == 'VEVENT'
             && (
-                (d - x.startDate > 0 && x.endDate - d > 0)
-                || (x.startDate - d > 0
-                    && x.startDate.getFullYear() == d.getFullYear()
-                    && x.startDate.getMonth() == d.getMonth()
-                    && x.startDate.getDate() == d.getDate()
-                )
+                d - x.startDate > 0
+                && x.endDate - d > 0
+                ||
+                x.startDate - d > 0
+                && x.startDate.getFullYear() == d.getFullYear()
+                && x.startDate.getMonth() == d.getMonth()
+                && x.startDate.getDate() == d.getDate()
             )
         })
 
