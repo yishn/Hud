@@ -5,7 +5,8 @@
     },
     "calendar": {
         "url": [],
-        "interval": 3600000
+        "interval": 3600000,
+        "offset": 0
     },
     "train": {
         "station": "Bunsengymnasium, Heidelberg",

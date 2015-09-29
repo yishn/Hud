@@ -16,7 +16,7 @@ exports.update = function() {
         if (!data) return
 
         var item = data[0]
-        var startDate = item.startDate
+        var startDate = new Date(item.startDate.getTime() + settings.offset)
         var time = ''
 
         if (startDate.getHours() != 0 || startDate.getMinutes() != 0)
@@ -41,16 +41,17 @@ exports.request = function(callback) {
         var d = new Date()
 
         var response = parseICS(body).filter(function(x) {
+            startDate = new Date(x.startDate.getTime() + settings.offset)
+            endDate = new Date(x.endDate.getTime() + settings.offset)
+
             return x.type == 'VEVENT'
-            && (
-                d - x.startDate > 0
-                && x.endDate - d > 0
+            && (d - startDate > 0
+                && endDate - d > 0
                 ||
-                x.startDate - d > 0
-                && x.startDate.getFullYear() == d.getFullYear()
-                && x.startDate.getMonth() == d.getMonth()
-                && x.startDate.getDate() == d.getDate()
-            )
+                startDate - d > 0
+                && startDate.getFullYear() == d.getFullYear()
+                && startDate.getMonth() == d.getMonth()
+                && startDate.getDate() == d.getDate())
         })
 
         data = data.concat(response)
