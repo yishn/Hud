@@ -24,6 +24,10 @@ exports.update = function() {
 
         items.forEach(function(item) {
             var destination = item.destination.split(',')[0].trim()
+            for (key in settings.replace) {
+                destination = destination.replace(key, settings.replace[key])
+            }
+
             var id = item.id.split(' ').map(function(x) {
                 if (isNaN(parseInt(x))) return x.length == 0 ? '' : x[0].toUpperCase()
                 else return x

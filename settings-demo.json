@@ -12,7 +12,8 @@
         "station": "Bunsengymnasium, Heidelberg",
         "fadeout": 4,
         "threshold": 10,
-        "interval": 60000
+        "interval": 60000,
+        "replace": {}
     },
     "activated": [
         "weather",
