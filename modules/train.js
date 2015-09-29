@@ -1,11 +1,9 @@
 var $ = require('sprint-js')
 var request = require('request')
-var settings = require('../settings').train
 
-var element
-
-exports.init = function(el) {
-    element = el
+exports.init = function(el, settings) {
+    exports.element = el
+    exports.settings = settings
 
     exports.update()
     setInterval(exports.update, settings.interval)
@@ -17,15 +15,15 @@ exports.update = function() {
 
         var items = data.items.filter(function(x) {
             x.time = Math.round((x.time - new Date()) / 1000 / 60)
-            return x.time <= settings.threshold && x.time > 0
+            return x.time <= exports.settings.threshold && x.time > 0
         })
 
         var display = []
 
         items.forEach(function(item) {
             var destination = item.destination.split(',')[0].trim()
-            for (key in settings.replace) {
-                destination = destination.replace(key, settings.replace[key])
+            for (key in exports.settings.replace) {
+                destination = destination.replace(key, exports.settings.replace[key])
             }
 
             var id = item.id.split(' ').map(function(x) {
@@ -34,17 +32,17 @@ exports.update = function() {
             }).join('')
 
             var string = item.time + 'm <strong>' + id + '</strong> ' + destination
-            if (item.time <= settings.fadeout) string = '<em>' + string + '</em>'
+            if (item.time <= exports.settings.fadeout) string = '<em>' + string + '</em>'
 
             display.push(string)
         })
 
-        element.html(display.join('<br>')).addClass('show')
+        exports.element.html(display.join('<br>')).addClass('show')
     })
 }
 
 exports.request = function(callback) {
-    var url = 'http://reiseauskunft.bahn.de/bin/bhftafel.exe/dn?ld=9646&rt=1&boardType=dep&time=actual&productsFilter=111111111&start=yes&input=' + encodeURIComponent(settings.station)
+    var url = 'http://reiseauskunft.bahn.de/bin/bhftafel.exe/dn?ld=9646&rt=1&boardType=dep&time=actual&productsFilter=111111111&start=yes&input=' + encodeURIComponent(exports.settings.station)
 
     request(url, function(error, response, body) {
         if (error) {

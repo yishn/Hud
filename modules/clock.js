@@ -1,7 +1,6 @@
-var element
-
-exports.init = function(el) {
-    element = el
+exports.init = function(el, settings) {
+    exports.element = el
+    exports.settings = settings
 
     exports.update()
     setInterval(exports.update, 1000)
@@ -13,5 +12,5 @@ exports.update = function() {
     var minutes = date.getMinutes()
     minutes = minutes < 10 ? '0' + minutes : minutes
 
-    element.text(hours + ':' + minutes)
+    exports.element.text(hours + ':' + minutes)
 }

@@ -15,7 +15,7 @@ var settings = require('./settings')
 $(window).on('load', function() {
     settings.activated.forEach(function(x) {
         $('#hud').append($('<li></li>').attr('id', x))
-        require('./modules/' + x).init($('#' + x))
+        require('./modules/' + x).init($('#' + x), settings[x])
     })
 
     // Update window

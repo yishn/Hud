@@ -1,11 +1,9 @@
 var parseICS = require('ics-parser')
 var request = require('request')
-var settings = require('../settings').calendar
 
-var element
-
-exports.init = function(el) {
-    element = el
+exports.init = function(el, settings) {
+    exports.element = el
+    exports.settings = settings
 
     exports.update()
     setInterval(exports.update, settings.interval)
@@ -16,18 +14,18 @@ exports.update = function() {
         if (!data) return
 
         var item = data[0]
-        var startDate = new Date(item.startDate.getTime() + settings.offset)
+        var startDate = new Date(item.startDate.getTime() + exports.settings.offset)
         var time = ''
 
         if (startDate.getHours() != 0 || startDate.getMinutes() != 0)
             time = startDate.getHours() + ':' + (startDate.getMinutes() < 10 ? '0' : '') + startDate.getMinutes()
 
-        element.text(item.name).prepend('<strong></strong>').find('strong').text(time + ' ')
+        exports.element.text(item.name).prepend('<strong></strong>').find('strong').text(time + ' ')
     })
 }
 
 exports.request = function(callback) {
-    if (settings.url.length == 0) return
+    if (exports.settings.url.length == 0) return
 
     var data = []
     var counter = 0
@@ -41,8 +39,8 @@ exports.request = function(callback) {
         var d = new Date()
 
         var response = parseICS(body).filter(function(x) {
-            startDate = new Date(x.startDate.getTime() + settings.offset)
-            endDate = new Date(x.endDate.getTime() + settings.offset)
+            startDate = new Date(x.startDate.getTime() + exports.settings.offset)
+            endDate = new Date(x.endDate.getTime() + exports.settings.offset)
 
             return x.type == 'VEVENT'
             && (d - startDate > 0
@@ -56,7 +54,7 @@ exports.request = function(callback) {
 
         data = data.concat(response)
 
-        if (++counter == settings.url.length) {
+        if (++counter == exports.settings.url.length) {
             data.sort(function(x, y) {
                 return y.startDate - x.startDate
             })
@@ -65,7 +63,7 @@ exports.request = function(callback) {
         }
     }
 
-    settings.url.forEach(function(url) {
+    exports.settings.url.forEach(function(url) {
         request(url, listener)
     })
 }
