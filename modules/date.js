@@ -1,7 +1,7 @@
 var days = ['Sunday', 'Monday', 'Tuesday',
     'Wednesday', 'Thursday', 'Friday', 'Saturday']
 var months = ['January', 'February', 'March', 'April', 'May', 'June',
-    'July', 'August', 'September', 'November', 'December']
+    'July', 'August', 'September', 'October', 'November', 'December']
 
 exports.init = function(el, settings) {
     exports.element = el
