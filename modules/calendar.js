@@ -11,7 +11,7 @@ exports.init = function(el, settings) {
 
 exports.update = function() {
     exports.request(function(data) {
-        if (!data) return
+        if (!data || data.length == 0) return
 
         var item = data[0]
         var startDate = new Date(item.startDate.getTime() + exports.settings.offset)
@@ -39,12 +39,14 @@ exports.request = function(callback) {
         var d = new Date()
 
         var response = parseICS(body).filter(function(x) {
-            startDate = new Date(x.startDate.getTime() + exports.settings.offset)
-            endDate = new Date(x.endDate.getTime() + exports.settings.offset)
+            var startDate = x.startDate ? new Date(x.startDate.getTime() + exports.settings.offset) : null
+            var endDate = x.endDate ? new Date(x.endDate.getTime() + exports.settings.offset) : null
+
+            if (!startDate) return false
 
             return x.type == 'VEVENT'
             && (d - startDate > 0
-                && endDate - d > 0
+                && endDate && endDate - d > 0
                 ||
                 startDate - d > 0
                 && startDate.getFullYear() == d.getFullYear()
