@@ -5,17 +5,20 @@
 <meta charset="utf-8">
 <title>Hud</title>
 <link rel="stylesheet" href="style.css">
+<script type="text/javascript" src="./node_modules/annyang/annyang.js"></script>
 <script>
 
 var currentWindow = require('electron').remote.getCurrentWindow()
-var screen = require('screen')
+var screen = require('electron').screen
 var $ = require('sprint-js')
 var settings = require('./settings')
 
 $(window).on('load', function() {
+    annyang.start()
+
     settings.activated.forEach(function(x) {
         $('#hud').append($('<li></li>').attr('id', x))
-        require('./modules/' + x).init($('#' + x), settings[x])
+        require('./modules/' + x).init($('#' + x), settings[x], annyang)
     })
 
     // Update window
@@ -29,7 +32,7 @@ $(window).on('load', function() {
         x: screensize.width - width - 30,
         y: 30
     })
-    
+
     currentWindow.show()
 })
 
