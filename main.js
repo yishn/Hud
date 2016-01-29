@@ -1,5 +1,5 @@
-var app = require('app')
-var BrowserWindow = require('browser-window')
+var app = require('electron').app
+var BrowserWindow = require('electron').BrowserWindow
 
 var window = null
 
@@ -20,5 +20,5 @@ app.on('ready', function() {
     // window.toggleDevTools()
 
     window.on('closed', function() { window = null })
-    window.loadUrl('file://' + __dirname + '/index.html')
+    window.loadURL('file://' + __dirname + '/index.html')
 })

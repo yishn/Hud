@@ -6,6 +6,7 @@
   "main": "main.js",
   "license": "MIT",
   "dependencies": {
+    "annyang": "github:talater/annyang",
     "ics-parser": "^0.1.5",
     "request": "^2.61.0",
     "sprint-js": "^0.1.0",

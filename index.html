@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="style.css">
 <script>
 
-var remote = require('remote')
+var currentWindow = require('electron').remote.getCurrentWindow()
 var screen = require('screen')
 var $ = require('sprint-js')
 var settings = require('./settings')
@@ -19,18 +19,18 @@ $(window).on('load', function() {
     })
 
     // Update window
-    var win = remote.getCurrentWindow()
     var hud = $('#hud')
     var width = Math.ceil(hud.width()) + 5
     var screensize = screen.getPrimaryDisplay().workAreaSize
 
-    win.setBounds({
+    currentWindow.setBounds({
         width: width,
         height: screensize.height,
         x: screensize.width - width - 30,
         y: 30
     })
-    win.show()
+    
+    currentWindow.show()
 })
 
 $(window).on('keydown', function(e) {
