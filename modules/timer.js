@@ -35,7 +35,7 @@ exports.display = function() {
     var seconds = remainingSeconds - minutes * 60
     if (seconds < 10) seconds = '0' + seconds
 
-    exports.element.text('Timer: ' + minutes + ':' + seconds)
+    exports.element.text('Timer ' + minutes + ':' + seconds)
 }
 
 exports.stopTimer = function() {
