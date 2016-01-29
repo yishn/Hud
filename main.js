@@ -17,7 +17,7 @@ app.on('ready', function() {
         transparent: true
     })
 
-    // window.toggleDevTools()
+    window.toggleDevTools()
 
     window.on('closed', function() { window = null })
     window.loadURL('file://' + __dirname + '/index.html')

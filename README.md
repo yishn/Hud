@@ -9,5 +9,6 @@ My desktop HUD.
 - Weather
 - Clock
 - Date
+- Timer
 - Calendar
 - Train
