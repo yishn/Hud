@@ -6,8 +6,16 @@ exports.init = function(el, settings, annyang) {
     exports.settings = settings
 
     annyang.addCommands({
-        'computer remind me in :number minutes': function(number) {
+        'computer remind me in :number minute(s)': function(number) {
+            if (number == 'one') number = 1
             exports.startTimer(+number)
+        },
+        'computer remind me in :number hour(s)': function(number) {
+            if (number == 'one') number = 1
+            exports.startTimer(+number * 60)
+        },
+        'computer remind me in half an hour': function() {
+            exports.startTimer(30)
         },
         'computer stop timer': function() {
             exports.stopTimer()
