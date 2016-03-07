@@ -20,7 +20,8 @@ exports.update = function() {
 
         var display = []
 
-        items.forEach(function(item) {
+        for (var i = Math.max(items.length - exports.settings.maxcount - 1, 0); i < items.length; i++) {
+            var item = items[i]
             var destination = item.destination.split(',')[0].trim()
             for (key in exports.settings.replace) {
                 destination = destination.replace(key, exports.settings.replace[key])
@@ -35,7 +36,7 @@ exports.update = function() {
             if (item.time <= exports.settings.fadeout) string = '<em>' + string + '</em>'
 
             display.push(string)
-        })
+        }
 
         exports.element.html(display.join('<br>')).addClass('show')
     })
