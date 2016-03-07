@@ -1,4 +1,8 @@
 {
+    "greeter": {
+        "name": "",
+        "duration": 60000
+    },
     "weather": {
         "location": "Heidelberg, DE",
         "interval": 1800000
@@ -20,6 +24,7 @@
         "weather",
         "clock",
         "date",
+        "greeter",
         "timer",
         "calendar",
         "train"
