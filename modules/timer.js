@@ -52,5 +52,5 @@ exports.stopTimer = function() {
 }
 
 exports.alert = function() {
-    new Audio('./sound/timer.mp3').play()
+    new Notification('Timer', { body: 'Your time is up!' })
 }
