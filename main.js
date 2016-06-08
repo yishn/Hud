@@ -19,6 +19,7 @@ app.on('ready', function() {
 
     // window.toggleDevTools()
 
+    window.setIgnoreMouseEvents(true)
     window.on('closed', function() { window = null })
     window.loadURL('file://' + __dirname + '/index.html')
 })
