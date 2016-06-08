@@ -22,15 +22,13 @@ $(window).on('load', function() {
     })
 
     // Update window
-    var hud = $('#hud')
-    var width = Math.ceil(hud.width()) + 5
     var screensize = screen.getPrimaryDisplay().workAreaSize
 
     currentWindow.setBounds({
-        width: width,
+        width: screensize.width,
         height: screensize.height,
-        x: screensize.width - width - 30,
-        y: 30
+        x: 0,
+        y: 0
     })
 
     currentWindow.show()

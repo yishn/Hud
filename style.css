@@ -41,6 +41,8 @@ img {
 #hud {
         list-style: none;
         float: right;
+        margin-right: 30px;
+        margin-top: 30px;
     }
     body > ul > li {
         margin: .5em 0;
