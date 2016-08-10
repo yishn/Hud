@@ -1,12 +1,11 @@
-var app = require('electron').app
-var BrowserWindow = require('electron').BrowserWindow
+const {app, BrowserWindow} = require('electron')
 
-var window = null
+let window = null
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function() { app.quit() })
+app.on('window-all-closed', () => app.quit())
 
-app.on('ready', function() {
+app.on('ready', () => {
     window = new BrowserWindow({
         width: 1000,
         height: 1000,
@@ -20,6 +19,6 @@ app.on('ready', function() {
     // window.toggleDevTools()
 
     window.setIgnoreMouseEvents(true)
-    window.on('closed', function() { window = null })
-    window.loadURL('file://' + __dirname + '/index.html')
+    window.on('closed', () => { window = null })
+    window.loadURL(`file://${__dirname}/index.html`)
 })
