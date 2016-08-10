@@ -8,21 +8,21 @@
 <script type="text/javascript" src="./node_modules/annyang/annyang.js"></script>
 <script>
 
-var currentWindow = require('electron').remote.getCurrentWindow()
-var screen = require('electron').screen
-var $ = require('sprint-js')
-var settings = require('./settings')
+const currentWindow = require('electron').remote.getCurrentWindow()
+const {screen} = require('electron')
+const $ = require('sprint-js')
+const settings = require('./settings')
 
-$(window).on('load', function() {
+$(window).on('load', () => {
     annyang.start()
 
-    settings.activated.forEach(function(x) {
+    settings.activated.forEach(x => {
         $('#hud').append($('<li></li>').attr('id', x))
         require('./modules/' + x).init($('#' + x), settings[x], annyang)
     })
 
     // Update window
-    var screensize = screen.getPrimaryDisplay().workAreaSize
+    let screensize = screen.getPrimaryDisplay().workAreaSize
 
     currentWindow.setBounds({
         width: screensize.width,
@@ -34,8 +34,8 @@ $(window).on('load', function() {
     currentWindow.show()
 })
 
-$(window).on('keydown', function(e) {
-    if (e.keyCode == 116) location.reload()
+$(window).on('keydown', evt => {
+    if (evt.keyCode == 116) location.reload()
 })
 
 </script>

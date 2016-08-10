@@ -7,9 +7,7 @@ exports.init = function(el, settings, annyang) {
     exports.settings = settings
 
     annyang.addCommands({
-        'greetings computer': function() {
-            exports.show()
-        }
+        'greetings computer': () => exports.show()
     })
 
     exports.show()
@@ -20,8 +18,8 @@ exports.hide = function() {
 }
 
 exports.show = function() {
-    var text
-    var hour = new Date().getHours()
+    let text
+    let hour = new Date().getHours()
 
     if (0 <= hour && hour < 5)
         text = choose(
@@ -51,7 +49,7 @@ exports.show = function() {
         )
 
     if (exports.settings.name.trim() != '') {
-        var question = text[text.length - 1] == '?'
+        let question = text[text.length - 1] == '?'
         if (question) text = text.slice(0, text.length - 1)
 
         text += ', ' + exports.settings.name

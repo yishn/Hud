@@ -1,25 +1,21 @@
-var timer = 0
-var remainingSeconds = 0
+let timer = 0
+let remainingSeconds = 0
 
 exports.init = function(el, settings, annyang) {
     exports.element = el
     exports.settings = settings
 
     annyang.addCommands({
-        'computer remind me in :number minute(s)': function(number) {
+        'computer remind me in :number minute(s)': number => {
             if (number == 'one') number = 1
             exports.startTimer(+number)
         },
-        'computer remind me in :number hour(s)': function(number) {
+        'computer remind me in :number hour(s)': number => {
             if (number == 'one') number = 1
             exports.startTimer(+number * 60)
         },
-        'computer remind me in half an hour': function() {
-            exports.startTimer(30)
-        },
-        'computer stop timer': function() {
-            exports.stopTimer()
-        }
+        'computer remind me in half an hour': () => exports.startTimer(30),
+        'computer stop timer': () => exports.stopTimer()
     })
 }
 
@@ -27,7 +23,7 @@ exports.startTimer = function(minutes) {
     exports.stopTimer()
     remainingSeconds = minutes * 60
 
-    timer = setInterval(function() {
+    timer = setInterval(() => {
         remainingSeconds--
         exports.display()
 
@@ -39,11 +35,11 @@ exports.startTimer = function(minutes) {
 }
 
 exports.display = function() {
-    var minutes = Math.floor(remainingSeconds / 60)
-    var seconds = remainingSeconds - minutes * 60
+    let minutes = Math.floor(remainingSeconds / 60)
+    let seconds = remainingSeconds - minutes * 60
     if (seconds < 10) seconds = '0' + seconds
 
-    exports.element.text('Timer ' + minutes + ':' + seconds)
+    exports.element.text(`Timer ${minutes}:${seconds}`)
 }
 
 exports.stopTimer = function() {

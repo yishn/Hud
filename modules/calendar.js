@@ -1,5 +1,5 @@
-var parseICS = require('ics-parser')
-var request = require('request')
+const parseICS = require('ics-parser')
+const request = require('request')
 
 exports.init = function(el, settings) {
     exports.element = el
@@ -10,12 +10,12 @@ exports.init = function(el, settings) {
 }
 
 exports.update = function() {
-    exports.request(function(data) {
+    exports.request(data => {
         if (!data || data.length == 0) return
 
-        var item = data[0]
-        var startDate = new Date(item.startDate.getTime() + exports.settings.offset)
-        var time = ''
+        let item = data[0]
+        let startDate = new Date(item.startDate.getTime() + exports.settings.offset)
+        let time = ''
 
         if (startDate.getHours() != 0 || startDate.getMinutes() != 0)
             time = startDate.getHours() + ':' + (startDate.getMinutes() < 10 ? '0' : '') + startDate.getMinutes()
@@ -27,20 +27,20 @@ exports.update = function() {
 exports.request = function(callback) {
     if (exports.settings.url.length == 0) return
 
-    var data = []
-    var counter = 0
+    let data = []
+    let counter = 0
 
-    var listener = function(error, response, body) {
+    let listener = (error, response, body) => {
         if (error) {
             callback(null)
             return
         }
 
-        var d = new Date()
+        let d = new Date()
 
-        var response = parseICS(body).filter(function(x) {
-            var startDate = x.startDate ? new Date(x.startDate.getTime() + exports.settings.offset) : null
-            var endDate = x.endDate ? new Date(x.endDate.getTime() + exports.settings.offset) : null
+        let response = parseICS(body).filter(x => {
+            let startDate = x.startDate ? new Date(x.startDate.getTime() + exports.settings.offset) : null
+            let endDate = x.endDate ? new Date(x.endDate.getTime() + exports.settings.offset) : null
 
             if (!startDate) return false
 
@@ -57,15 +57,10 @@ exports.request = function(callback) {
         data = data.concat(response)
 
         if (++counter == exports.settings.url.length) {
-            data.sort(function(x, y) {
-                return y.startDate - x.startDate
-            })
-
+            data.sort((x, y) => y.startDate - x.startDate)
             callback(data)
         }
     }
 
-    exports.settings.url.forEach(function(url) {
-        request(url, listener)
-    })
+    exports.settings.url.forEach(url => request(url, listener))
 }

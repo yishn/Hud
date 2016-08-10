@@ -1,5 +1,5 @@
-var yql = require('yql')
-var codes = [
+const yql = require('yql')
+const codes = [
     'tornado',
     'day-storm-showers',
     'hurricane',
@@ -60,24 +60,25 @@ exports.init = function(el, settings) {
 }
 
 exports.update = function() {
-    var query = new yql([
+    let query = new yql([
         'select * from weather.forecast',
         'where u="c" and woeid in',
         '(select woeid from geo.places(1)',
-        'where text="' + exports.settings.location + '")'
+        `where text="${exports.settings.location}")`
     ].join(' '))
 
-    query.exec(function(err, data) {
+    query.exec((err, data) => {
         if (err) {
             exports.element.text(exports.settings.location)
             return
         }
 
-        var location = data.query.results.channel.location
-        var condition = data.query.results.channel.item.condition
+        let location = data.query.results.channel.location
+        let condition = data.query.results.channel.item.condition
 
-        exports.element.text(location.city + ', ' + condition.temp + '°C')
-            .prepend('<i class="wi wi-' + codes[condition.code] + '" title="' + condition.text + '"></i> ')
-            .addClass('show')
+        exports.element
+        .text(`${location.city}, ${condition.temp}°C`)
+        .prepend(`<i class="wi wi-${codes[condition.code]}" title="${condition.text}"></i> `)
+        .addClass('show')
     })
 }

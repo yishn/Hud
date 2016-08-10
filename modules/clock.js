@@ -7,9 +7,9 @@ exports.init = function(el, settings) {
 }
 
 exports.update = function() {
-    var date = new Date()
-    var hours = date.getHours()
-    var minutes = date.getMinutes()
+    let date = new Date()
+    let hours = date.getHours()
+    let minutes = date.getMinutes()
     minutes = minutes < 10 ? '0' + minutes : minutes
 
     exports.element.text(hours + ':' + minutes)
