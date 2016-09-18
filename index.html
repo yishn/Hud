@@ -23,11 +23,12 @@ $(window).on('load', () => {
 
     // Update window
     let screensize = screen.getPrimaryDisplay().workAreaSize
+    let width = Math.round(screensize.width / 3)
 
     currentWindow.setBounds({
-        width: screensize.width,
+        width,
         height: screensize.height,
-        x: 0,
+        x: screensize.width - width,
         y: 0
     })
 
