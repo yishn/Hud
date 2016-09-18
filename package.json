@@ -14,8 +14,8 @@
     "yql": "^1.0.2"
   },
   "scripts": {
-    "build:win": "electron-packager ./ hud --platform=win32 --arch=all --app-version=0.1.0 --build-version=0.1.0 --version=1.3.3 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Hud\" --version-string.OriginalFilename=\"hud.exe\" --version-string.ProductName=\"Hud\" --version-string.InternalName=\"hud.exe\"",
-    "build:linux": "electron-packager ./ hud --platform=linux --arch=all --app-version=0.1.0 --build-version=0.1.0   --version=1.3.3 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\"",
-    "build:osx": "electron-packager ./ Hud --platform=darwin --arch=all --app-version=0.1.0 --build-version=0.1.0   --version=1.3.3 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\"  "
+    "build:win": "electron-packager ./ hud --platform=win32 --arch=all --app-version=0.1.0 --build-version=0.1.0 --version=1.4.0 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Hud\" --version-string.OriginalFilename=\"hud.exe\" --version-string.ProductName=\"Hud\" --version-string.InternalName=\"hud.exe\"",
+    "build:linux": "electron-packager ./ hud --platform=linux --arch=all --app-version=0.1.0 --build-version=0.1.0   --version=1.4.0 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\"",
+    "build:osx": "electron-packager ./ Hud --platform=darwin --arch=all --app-version=0.1.0 --build-version=0.1.0   --version=1.4.0 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\"  "
   }
 }

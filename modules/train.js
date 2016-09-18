@@ -46,7 +46,7 @@ exports.update = function() {
 exports.request = function(callback) {
     let url = [
         'http://reiseauskunft.bahn.de/bin/bhftafel.exe/dn',
-        '?ld=9646&rt=1&boardType=dep&time=actual&productsFilter=111111111&start=yes&input='
+        '?ld=9646&rt=1&boardType=dep&time=actual&productsFilter=111111111&start=yes&input=',
         encodeURIComponent(exports.settings.station)
     ].join('')
 

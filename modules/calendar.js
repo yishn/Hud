@@ -30,7 +30,7 @@ exports.request = function(callback) {
     let data = []
     let counter = 0
 
-    let listener = (error, response, body) => {
+    let listener = (error, _, body) => {
         if (error) {
             callback(null)
             return
