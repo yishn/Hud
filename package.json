@@ -6,7 +6,6 @@
   "main": "main.js",
   "license": "MIT",
   "dependencies": {
-    "annyang": "github:talater/annyang",
     "ics-parser": "^0.1.5",
     "request": "^2.61.0",
     "sprint-js": "^0.1.0",
@@ -17,7 +16,7 @@
     "electron-packager": "^8.4.0"
   },
   "scripts": {
-    "build:win": "electron-packager ./ hud --platform=win32 --arch=all --app-version=0.1.0 --build-version=0.1.0 --version=1.4.13 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Hud\" --version-string.OriginalFilename=\"hud.exe\" --version-string.ProductName=\"Hud\" --version-string.InternalName=\"hud.exe\"",
-    "build:osx": "electron-packager ./ Hud --platform=darwin --arch=all --app-version=0.1.0 --build-version=0.1.0   --version=1.4.13 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015/2016 Yichuan Shen\""
+    "build:win": "electron-packager ./ hud --platform=win32 --arch=all --app-version=0.1.0 --build-version=0.1.0 --version=1.7.2 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015-2017 Yichuan Shen\" --version-string.CompanyName=\"Yichuan Shen\" --version-string.FileDescription=\"Hud\" --version-string.OriginalFilename=\"hud.exe\" --version-string.ProductName=\"Hud\" --version-string.InternalName=\"hud.exe\"",
+    "build:osx": "electron-packager ./ Hud --platform=darwin --arch=all --app-version=0.1.0 --build-version=0.1.0   --version=1.7.2 --out=./bin --overwrite --app-copyright=\"Copyright (C) 2015-2017 Yichuan Shen\""
   }
 }

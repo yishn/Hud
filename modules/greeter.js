@@ -2,13 +2,9 @@ function choose() {
     return arguments[Math.floor(Math.random() * arguments.length)]
 }
 
-exports.init = function(el, settings, annyang) {
+exports.init = function(el, settings) {
     exports.element = el
     exports.settings = settings
-
-    annyang.addCommands({
-        'greetings computer': () => exports.show()
-    })
 
     exports.show()
 }

@@ -10,7 +10,6 @@ My desktop HUD.
 - Clock
 - Date
 - Greeter
-- Timer
 - Calendar
 - Train
 
@@ -23,13 +22,13 @@ $ git clone https://github.com/yishn/Hud
 $ cd Hud
 ~~~
 
-Install the dependencies of Hud using npm:
+Rename `settings-demo.json` to `settings.json` and edit it to your taste. Install the dependencies using npm:
 
 ~~~
 $ npm install
 ~~~
 
-You can build Hud by using one of the three build instructions depending on the target OS:
+You can build Hud by using one of the following build instructions depending on the target OS:
 
 * `$ npm run build:win`
 * `$ npm run build:osx`
