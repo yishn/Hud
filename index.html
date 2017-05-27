@@ -7,8 +7,8 @@
 <link rel="stylesheet" href="style.css">
 <script>
 
-const currentWindow = require('electron').remote.getCurrentWindow()
-const {screen} = require('electron')
+const {screen, remote} = require('electron')
+const currentWindow = remote.getCurrentWindow()
 const $ = require('sprint-js')
 const settings = require('./settings')
 
@@ -28,6 +28,8 @@ $(window).on('load', () => {
         x: screensize.width - width,
         y: 0
     })
+
+    currentWindow.show()
 })
 
 $(window).on('keydown', evt => {

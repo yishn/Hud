@@ -19,7 +19,6 @@ app.on('ready', () => {
     // window.toggleDevTools()
 
     window.setIgnoreMouseEvents(true)
-    window.once('ready-to-show', () => window.show())
     window.on('closed', () => { window = null })
     window.loadURL(`file://${__dirname}/index.html`)
 })
