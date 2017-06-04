@@ -11,7 +11,6 @@ app.on('ready', () => {
         height: 1000,
         resizable: false,
         skipTaskbar: true,
-        show: false,
         frame: false,
         transparent: true
     })
