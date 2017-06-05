@@ -7,8 +7,8 @@ app.on('window-all-closed', () => app.quit())
 
 app.on('ready', () => {
     window = new BrowserWindow({
-        width: 1000,
-        height: 1000,
+        width: 1,
+        height: 1,
         resizable: false,
         skipTaskbar: true,
         frame: false,
