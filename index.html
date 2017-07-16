@@ -19,7 +19,7 @@ $(window).on('load', () => {
     })
 
     // Update window
-    
+
     let screensize = screen.getPrimaryDisplay().workAreaSize
     let width = Math.round(screensize.width / 3)
 
@@ -29,6 +29,8 @@ $(window).on('load', () => {
         x: screensize.width - width,
         y: 0
     })
+
+    currentWindow.setSkipTaskbar(true)
 })
 
 $(window).on('keydown', evt => {
