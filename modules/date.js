@@ -27,7 +27,6 @@ module.exports = class DateModule extends Component {
     }
 
     render(_, {date}) {
-        console.log('re')
         let day = date.getDate()
         let th = 'th'
 
