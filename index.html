@@ -5,44 +5,39 @@
 <meta charset="utf-8">
 <title>Hud</title>
 <link rel="stylesheet" href="style.css">
-<script>
-
-const {screen, remote} = require('electron')
-const currentWindow = remote.getCurrentWindow()
-const $ = require('sprint-js')
-const settings = require('./settings')
-
-$(window).on('load', () => {
-    settings.activated.forEach(x => {
-        $('#hud').append($('<li></li>').attr('id', x))
-        require('./modules/' + x).init($('#' + x), settings[x])
-    })
-
-    // Update window
-
-    let screensize = screen.getPrimaryDisplay().workAreaSize
-    let width = Math.round(screensize.width / 3)
-
-    currentWindow.setBounds({
-        width,
-        height: screensize.height,
-        x: screensize.width - width,
-        y: 0
-    })
-
-    currentWindow.setSkipTaskbar(true)
-})
-
-$(window).on('keydown', evt => {
-    if (evt.keyCode == 116) location.reload()
-})
-
-</script>
 
 </head>
 <body>
+<script>
 
-<ul id="hud"></ul>
+const {screen, remote} = require('electron')
+const {h, render} = require('preact')
 
+const currentWindow = remote.getCurrentWindow()
+const settings = require('./settings')
+
+// Update window
+
+let screensize = screen.getPrimaryDisplay().workAreaSize
+let width = Math.round(screensize.width / 3)
+
+currentWindow.setBounds({
+    width,
+    height: screensize.height,
+    x: screensize.width - width,
+    y: 0
+})
+
+currentWindow.setSkipTaskbar(true)
+
+// Render
+
+render(h('ul', {id: 'hud'},
+    settings.activated.map(id =>
+        h(require(`./modules/${id}`), settings[id])
+    )
+), document.body)
+
+</script>
 </body>
 </html>
