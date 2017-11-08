@@ -1,3 +1,5 @@
+const {h, Component} = require('preact')
+
 const yql = require('yql')
 const codes = [
     'tornado',
@@ -51,34 +53,49 @@ const codes = [
     'stars'
 ]
 
-exports.init = function(el, settings) {
-    exports.element = el.text('Loading weather…')
-    exports.settings = settings
+module.exports = class WeatherModule extends Component {
+    constructor(props) {
+        super(props)
 
-    exports.update()
-    setInterval(exports.update, settings.interval)
-}
-
-exports.update = function() {
-    let query = new yql([
-        'select * from weather.forecast',
-        'where u="c" and woeid in',
-        '(select woeid from geo.places(1)',
-        `where text="${exports.settings.location}")`
-    ].join(' '))
-
-    query.exec((err, data) => {
-        if (err) {
-            exports.element.text(exports.settings.location)
-            return
+        this.state = {
+            data: null
         }
+    }
 
-        let location = data.query.results.channel.location
-        let condition = data.query.results.channel.item.condition
+    componentDidMount() {
+        this.update()
+        setInterval(() => this.update(), this.props.interval)
+    }
+    
+    update() {
+        let query = new yql([
+            'select * from weather.forecast',
+            'where u="c" and woeid in',
+            '(select woeid from geo.places(1)',
+            `where text="${this.props.location}")`
+        ].join(' '))
 
-        exports.element
-        .text(`${location.city}, ${condition.temp}°C`)
-        .prepend(`<i class="wi wi-${codes[condition.code]}" title="${condition.text}"></i> `)
-        .addClass('show')
-    })
+        query.exec((err, data) => {
+            if (err) return this.setState({data: null})
+
+            let location = data.query.results.channel.location
+            let condition = data.query.results.channel.item.condition
+
+            this.setState({data: {location, condition}})
+        })
+    }
+
+    render({location}, {data}) {
+        return h('li', {id: 'weather'},
+            data == null 
+            ? location
+            : [
+                h('i', {
+                    class: `wi wi-${codes[data.condition.code]}`,
+                    title: data.condition.text
+                }),
+                ` ${data.location.city}, ${data.condition.temp}°C`
+            ]
+        )
+    }
 }

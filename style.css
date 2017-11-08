@@ -53,10 +53,7 @@ img {
         font-weight: normal;
         letter-spacing: 1px;
         text-transform: uppercase;
-        opacity: 0;
-        transition: .5s opacity;
     }
-    #weather.show { opacity: 1 }
     #weather .wi {
         margin-right: 5px;
 }
