@@ -72,6 +72,23 @@ img {
     font-size: 1.75em;
 }
 
+#greeter {
+        display: none;
+    }
+    #greeter.show {
+        display: block;
+}
+
+#calendar {
+        margin: 0;
+        opacity: 0;
+        transition: .5s opacity;
+    }
+    #calendar.show {
+        margin: .5em 0;
+        opacity: 1;
+}
+
 #train {
         line-height: 2;
         opacity: 0;

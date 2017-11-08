@@ -59,9 +59,7 @@ module.exports = class GreeterModule extends Component {
         return h('li', 
             {
                 id: 'greeter',
-                style: {
-                    display: show ? 'block' : 'none'
-                }
+                class: show && 'show' 
             }, 
 
             text
