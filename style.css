@@ -5,6 +5,10 @@
     padding: 0;
 }
 
+.hide {
+    display: none;
+}
+
 body, input, button, select, option, textarea {
     font: menu;
     font-size: 20px;
