@@ -2,7 +2,6 @@ const {app, BrowserWindow} = require('electron')
 
 let window = null
 
-// Quit when all windows are closed.
 app.on('window-all-closed', () => app.quit())
 
 app.on('ready', () => {
@@ -18,6 +17,6 @@ app.on('ready', () => {
     // window.toggleDevTools()
 
     window.setIgnoreMouseEvents(true)
-    window.on('closed', () => { window = null })
+    window.on('closed', () => window = null)
     window.loadURL(`file://${__dirname}/index.html`)
 })
