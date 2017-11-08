@@ -1,33 +1,42 @@
+const {h, Component} = require('preact')
+
 const days = ['Sunday', 'Monday', 'Tuesday',
     'Wednesday', 'Thursday', 'Friday', 'Saturday']
 const months = ['January', 'February', 'March', 'April', 'May', 'June',
     'July', 'August', 'September', 'October', 'November', 'December']
 
-let cache = ''
+module.exports = class DateModule extends Component {
+    constructor(props) {
+        super(props)
 
-exports.init = function(el, settings) {
-    exports.element = el
-    exports.settings = settings
-
-    exports.update()
-}
-
-exports.update = function() {
-    let date = new Date()
-    let day = date.getDate()
-    let hours = date.getHours()
-    let minutes = date.getMinutes()
-    let seconds = date.getSeconds()
-    let th = 'th'
-
-    if (day < 10 || day >= 20) {
-        th = day % 10 == 1 ? 'st' : (day % 10 == 2 ? 'nd' : (day % 10 == 3 ? 'rd' : 'th'))
+        this.state = {
+            date: new Date()
+        }
     }
 
-    let text = days[date.getDay()] + ', ' + day + th + ' ' + months[date.getMonth()]
-    if (text == cache) setTimeout(exports.update, 1000)
-    else setTimeout(exports.update, (24 * 60 * 60 - hours * 60 * 60 - minutes * 60 - seconds) * 1000)
+    componentDidMount() {
+        this.componentDidUpdate()
+    }
 
-    exports.element.text(text)
-    cache = text
+    componentDidUpdate() {
+        let seconds = this.state.date.getSeconds()
+
+        setTimeout(() => {
+            this.setState({date: new Date()})
+        }, (60 - seconds) * 1000)
+    }
+
+    render(_, {date}) {
+        console.log('re')
+        let day = date.getDate()
+        let th = 'th'
+
+        if (day < 10 || day >= 20) {
+            th = day % 10 == 1 ? 'st' : (day % 10 == 2 ? 'nd' : (day % 10 == 3 ? 'rd' : 'th'))
+        }
+
+        let text = days[date.getDay()] + ', ' + day + th + ' ' + months[date.getMonth()]
+
+        return h('li', {id: 'date'}, text)
+    }
 }

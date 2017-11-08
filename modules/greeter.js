@@ -4,7 +4,7 @@ function choose() {
     return arguments[Math.floor(Math.random() * arguments.length)]
 }
 
-module.exports = class Greeter extends Component {
+module.exports = class GreeterModule extends Component {
     constructor(props) {
         super(props)
 
