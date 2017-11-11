@@ -52,18 +52,17 @@ module.exports = class TrainModule extends Component {
                     destination = destination.replace(key, replace[key])
                 }
 
-                return [
-                    i > 0 && h('br'),
+                return h('p', {},
                     h(item.time <= fadeout ? 'em' : 'span', {}, [
                         item.time, 'm ',
 
                         h('strong', {}, item.id.split(/\s+/).map(x =>
                             isNaN(x) ? (x.length === 0 ? '' : x[0].toUpperCase()) : x
                         ).join('')), ' ', 
-                        
+
                         destination
                     ])
-                ]
+                )
             })
         )
     }

@@ -8,8 +8,8 @@ module.exports = class LunchModule extends Component {
         super(props)
 
         this.state = {
-            data: null,
-            show: true
+            date: new Date(),
+            data: null
         }
     }
 
@@ -18,7 +18,7 @@ module.exports = class LunchModule extends Component {
     }
 
     update() {
-        let date = new Date()
+        let {date} = this.state
         let day = (date.getDay() || 7) - 1
 
         let url = 'http://sap-lunch-menu.appspot.com'
@@ -42,19 +42,17 @@ module.exports = class LunchModule extends Component {
         })
     }
 
-    render({maxlength}, {data, show}) {
-        let date = new Date()
+    render({start, end, maxlength}, {date, data}) {
         let lunch = null
 
         if (data != null) {
-            lunch = data.items.find(x => x.date.toDateString() === date.toDateString())
-            // lunch = data.items[0]
+            lunch = data.items.find(x => x.date.toDateString() === date.toDateString() || true)
         }
 
-        return h('li', {id: 'lunch', class: lunch != null && show && 'show'},
-            lunch != null && lunch.content.map((item, i) => [
-                i > 0 && h('br'),
+        let show = lunch != null && (start <= date.getHours() && date.getHours() <= end || true)
 
+        return h('li', {id: 'lunch', class: show && 'show'},
+            show && lunch.content.map((item, i) => h('p', {},
                 h('strong', {}, item.category.split(/\s+/).map(x =>
                     isNaN(x) ? (x.length === 0 ? '' : x[0].toUpperCase()) : x
                 ).join('')), ' ',
@@ -62,7 +60,7 @@ module.exports = class LunchModule extends Component {
                 item.value.length < maxlength 
                 ? item.value 
                 : item.value.slice(0, Math.max(maxlength - 3, 0)).trim() + '…'
-            ])
+            ))
         )
     }
 }
