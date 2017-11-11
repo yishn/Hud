@@ -15,6 +15,7 @@ module.exports = class LunchModule extends Component {
 
     componentDidMount() {
         this.update()
+        setInterval(() => this.update(), this.props.interval)
     }
 
     update() {
@@ -46,10 +47,10 @@ module.exports = class LunchModule extends Component {
         let lunch = null
 
         if (data != null) {
-            lunch = data.items.find(x => x.date.toDateString() === date.toDateString() || true)
+            lunch = data.items.find(x => x.date.toDateString() === date.toDateString())
         }
 
-        let show = lunch != null && (start <= date.getHours() && date.getHours() <= end || true)
+        let show = lunch != null && start <= date.getHours() && date.getHours() <= end
 
         return h('li', {id: 'lunch', class: show && 'show'},
             show && lunch.content.map((item, i) => h('p', {},
