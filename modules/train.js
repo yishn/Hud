@@ -1,5 +1,4 @@
 const {h, Component} = require('preact')
-const request = require('request')
 const {JSDOM} = require('jsdom')
 
 module.exports = class TrainModule extends Component {
@@ -23,11 +22,7 @@ module.exports = class TrainModule extends Component {
             encodeURIComponent(this.props.station)
         ].join('')
 
-        request(url, (err, _, body) => {
-            if (err) return this.setState({data: null})
-
-            let dom = new JSDOM(body).window.document
-
+        JSDOM.fromURL(url).then(({window: {document: dom}}) => {
             let name = dom.querySelector('input#rplc0').value
             let d = new Date()
             let items = [...dom.querySelectorAll('tr[id^="journeyRow_"]')].map(tr => ({
