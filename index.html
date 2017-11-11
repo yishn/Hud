@@ -8,36 +8,8 @@
 
 </head>
 <body>
-<script>
 
-const {screen, remote} = require('electron')
-const {h, render} = require('preact')
+<script>require('./index')</script>
 
-const currentWindow = remote.getCurrentWindow()
-const settings = require('./settings')
-
-// Update window
-
-let screensize = screen.getPrimaryDisplay().workAreaSize
-let width = Math.round(screensize.width / 3)
-
-currentWindow.setBounds({
-    width,
-    height: screensize.height,
-    x: screensize.width - width,
-    y: 0
-})
-
-currentWindow.setSkipTaskbar(true)
-
-// Render
-
-render(h('ul', {id: 'hud'},
-    settings.activated.map(id =>
-        h(require(`./modules/${id}`), settings[id])
-    )
-), document.body)
-
-</script>
 </body>
 </html>

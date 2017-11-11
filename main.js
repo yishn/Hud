@@ -11,7 +11,8 @@ app.on('ready', () => {
         resizable: false,
         skipTaskbar: true,
         frame: false,
-        transparent: true
+        transparent: true,
+        show: false
     })
 
     // window.webContents.openDevTools({mode: 'detach'})
