@@ -15,7 +15,16 @@ module.exports = class LunchModule extends Component {
 
     componentDidMount() {
         this.update()
-        setInterval(() => this.update(), this.props.interval)
+
+        setInterval(() => {
+            let date = new Date()
+
+            this.setState({date})
+
+            if (this.props.start <= date.getHours() && date.getHours() <= this.props.end) {
+                this.update()
+            }
+        }, (60 - new Date().getMinutes()) * 60000)
     }
 
     update() {

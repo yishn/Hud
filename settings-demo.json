@@ -15,8 +15,7 @@
     "lunch": {
         "start": 12,
         "end": 13,
-        "maxlength": 30,
-        "interval": 3600000
+        "maxlength": 30
     },
     "train": {
         "station": "Bunsengymnasium, Heidelberg",
