@@ -11,17 +11,9 @@ class App extends Component {
     }
 
     componentDidMount() {
-        let screensize = screen.getPrimaryDisplay().workAreaSize
-        let width = Math.round(screensize.width / 3)
+        let {width, height} = screen.getPrimaryDisplay().workAreaSize
 
-        this.window.setBounds({
-            width,
-            height: screensize.height,
-            x: screensize.width - width,
-            y: 0
-        })
-
-        this.window.show()
+        this.window.setBounds({x: 0, y: 0, width, height})
     }
 
     render() {

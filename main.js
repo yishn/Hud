@@ -2,6 +2,9 @@ const {app, BrowserWindow} = require('electron')
 
 let window = null
 
+app.disableHardwareAcceleration()
+app.commandLine.appendSwitch('enable-transparent-visuals')
+
 app.on('window-all-closed', () => app.quit())
 
 app.on('ready', () => {
@@ -12,7 +15,6 @@ app.on('ready', () => {
         skipTaskbar: true,
         frame: false,
         transparent: true,
-        show: false
     })
 
     // window.webContents.openDevTools({mode: 'detach'})
