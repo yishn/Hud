@@ -6,12 +6,13 @@ My desktop HUD.
 
 ## Modules
 
-- Weather
+- Weather — *Uses Yahoo Weather service*
 - Clock
 - Date
 - Greeter
-- Calendar
-- Train
+- Calendar — *Ability to download `ics` files from the internet*
+- Lunch — *Displays lunch main menu items at SAP Headquarters*
+- Train — *Displays [Deutsche Bahn](https://bahn.de/) data*
 
 ## Building
 
