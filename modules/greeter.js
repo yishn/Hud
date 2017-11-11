@@ -56,13 +56,8 @@ module.exports = class GreeterModule extends Component {
             if (question) text += '?'
         }
 
-        return h('li', 
-            {
-                id: 'greeter',
-                class: show && 'show' 
-            }, 
-
-            text
+        return h('li', {id: 'greeter', class: show && 'show'},
+            show && text
         )
     }
 }

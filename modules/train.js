@@ -47,17 +47,17 @@ module.exports = class TrainModule extends Component {
                     destination = destination.replace(key, replace[key])
                 }
 
-                let id = item.id.split(/\s+/).map(x =>
-                    isNaN(x) ? (x.length === 0 ? '' : x[0].toUpperCase()) : x
-                ).join('')
-
-                return [
-                    i > 0 && h('br'),
+                return h('p', {},
                     h(item.time <= fadeout ? 'em' : 'span', {}, [
                         item.time, 'm ',
-                        h('strong', {}, id), ' ', destination
+
+                        h('strong', {}, item.id.split(/\s+/).map(x =>
+                            isNaN(x) ? (x.length === 0 ? '' : x[0].toUpperCase()) : x
+                        ).join('')), ' ', 
+
+                        destination
                     ])
-                ]
+                )
             })
         )
     }
