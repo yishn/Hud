@@ -12,6 +12,12 @@
         "interval": 3600000,
         "offset": 0
     },
+    "lunch": {
+        "start": 12,
+        "end": 13,
+        "maxlength": 30,
+        "interval": 3600000
+    },
     "train": {
         "station": "Bunsengymnasium, Heidelberg",
         "fadeout": 4,
@@ -25,7 +31,6 @@
         "clock",
         "date",
         "greeter",
-        "calendar",
-        "train"
+        "calendar"
     ]
 }
