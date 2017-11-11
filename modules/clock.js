@@ -1,24 +1,33 @@
-let cache = ''
+const {h, Component} = require('preact')
 
-exports.init = function(el, settings) {
-    exports.element = el
-    exports.settings = settings
+module.exports = class ClockModule extends Component {
+    constructor(props) {
+        super(props)
 
-    exports.update()
-}
+        this.state = {
+            date: new Date()
+        }
+    }
 
-exports.update = function() {
-    let date = new Date()
-    let hours = date.getHours()
-    let minutes = date.getMinutes()
-    let seconds = date.getSeconds()
-    minutes = minutes < 10 ? '0' + minutes : minutes
+    componentDidMount() {
+        this.componentDidUpdate()
+    }
 
-    let text = hours + ':' + minutes
+    componentDidUpdate() {
+        let seconds = this.state.date.getSeconds()
 
-    if (text == cache) setTimeout(exports.update, 1000)
-    else setTimeout(exports.update, (60 - seconds) * 1000)
+        setTimeout(() => {
+            this.setState({date: new Date()})
+        }, (60 - seconds) * 1000)
+    }
 
-    exports.element.text(text)
-    cache = text
+    render(_, {date}) {
+        let hours = date.getHours()
+        let minutes = date.getMinutes()
+
+        if (minutes < 10) minutes = `0${minutes}`
+        let text = hours + ':' + minutes
+
+        return h('li', {id: 'clock'}, text)
+    }
 }

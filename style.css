@@ -5,11 +5,15 @@
     padding: 0;
 }
 
+.hide {
+    display: none;
+}
+
 body, input, button, select, option, textarea {
     font: menu;
     font-size: 20px;
     font-weight: lighter;
-    line-height: 1.2;
+    line-height: 1.6;
 }
 
 body, a {
@@ -22,7 +26,7 @@ body, a {
 body {
     color: white;
     text-align: right;
-    text-shadow: 0 0 15px rgba(0, 0, 0, .2);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, .2);
 }
 
 a, img {
@@ -45,6 +49,7 @@ img {
     }
     body > ul > li {
         margin: .5em 0;
+        transition: .5s opacity;
 }
 
 #weather {
@@ -53,10 +58,7 @@ img {
         font-weight: normal;
         letter-spacing: 1px;
         text-transform: uppercase;
-        opacity: 0;
-        transition: .5s opacity;
     }
-    #weather.show { opacity: 1 }
     #weather .wi {
         margin-right: 5px;
 }
@@ -64,19 +66,42 @@ img {
 #clock {
     margin: 0;
     font-size: 5.5em;
+    line-height: 1.2;
 }
 
 #date {
     margin-top: 0;
     font-size: 1.75em;
+    line-height: 1.2;
+}
+
+#greeter {
+        opacity: 0;
+    }
+    #greeter.show {
+        opacity: 1;
+}
+
+#calendar {
+        opacity: 0;
+    }
+    #calendar.show {
+        opacity: 1;
+}
+
+#lunch {
+        opacity: 0;
+    }
+    #lunch.show {
+        opacity: 1;
 }
 
 #train {
-        line-height: 2;
         opacity: 0;
-        transition: .5s opacity;
     }
-    #train.show { opacity: 1; }
+    #train.show { 
+        opacity: 1; 
+    }
     #train em {
         opacity: .7;
         font-style: normal;
