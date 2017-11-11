@@ -24,9 +24,9 @@ module.exports = class TrainModule extends Component {
 
         JSDOM.fromURL(url).then(({window: {document: dom}}) => {
             let name = dom.querySelector('input#rplc0').value
-            let d = new Date()
+            let dateString = new Date().toDateString()
             let items = [...dom.querySelectorAll('tr[id^="journeyRow_"]')].map(tr => ({
-                time: new Date(d.toDateString() + ' ' + tr.querySelector('.time').textContent.trim()),
+                time: new Date(`${dateString} ${tr.querySelector('.time').textContent.trim()}`),
                 id: tr.querySelector('.train + .train a').textContent.trim(),
                 destination: tr.querySelector('.route .bold a').textContent.trim()
             }))
