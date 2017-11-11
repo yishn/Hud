@@ -1,5 +1,6 @@
 const {h, Component} = require('preact')
 const request = require('request')
+const {JSDOM} = require('jsdom')
 
 module.exports = class TrainModule extends Component {
     constructor(props) {
@@ -22,18 +23,17 @@ module.exports = class TrainModule extends Component {
             encodeURIComponent(this.props.station)
         ].join('')
 
-        request(url, (err, response, body) => {
+        request(url, (err, _, body) => {
             if (err) return this.setState({data: null})
 
-            let html = /<body[^>]*?>([^]*?)<\/body>/.exec(body)[1].trim()
-            this.dataElement.innerHTML = html
+            let dom = new JSDOM(body).window.document
 
-            let name = this.dataElement.querySelector('input#rplc0').value
+            let name = dom.querySelector('input#rplc0').value
             let d = new Date()
-            let items = [...this.dataElement.querySelectorAll('tr[id^="journeyRow_"]')].map(item => ({
-                time: new Date(d.toDateString() + ' ' + item.querySelector('.time').innerText.trim()),
-                id: item.querySelector('.train + .train a').innerText.trim(),
-                destination: item.querySelector('.route .bold a').innerText.trim()
+            let items = [...dom.querySelectorAll('tr[id^="journeyRow_"]')].map(tr => ({
+                time: new Date(d.toDateString() + ' ' + tr.querySelector('.time').textContent.trim()),
+                id: tr.querySelector('.train + .train a').textContent.trim(),
+                destination: tr.querySelector('.route .bold a').textContent.trim()
             }))
 
             this.setState({data: {name, items}})
@@ -63,12 +63,6 @@ module.exports = class TrainModule extends Component {
                         h('strong', {}, id), ' ', destination
                     ])
                 ]
-            }),
-
-            h('div', {
-                ref: el => this.dataElement = el, 
-                class: 'hide',
-                dangerouslySetInnerHTML: {__html: ''}
             })
         )
     }

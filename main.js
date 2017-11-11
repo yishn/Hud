@@ -14,7 +14,7 @@ app.on('ready', () => {
         transparent: true
     })
 
-    // window.toggleDevTools()
+    // window.webContents.openDevTools({mode: 'detach'})
 
     window.setIgnoreMouseEvents(true)
     window.on('closed', () => window = null)
