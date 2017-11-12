@@ -82,9 +82,13 @@ img {
         opacity: 1;
 }
 
-#system p {
-    display: inline;
-    margin-left: 1em;
+#system {
+        font-size: .8em;
+        text-transform: uppercase;
+    }
+    #system p {
+        display: inline;
+        margin-left: 1em;
 }
 
 #calendar {
@@ -107,9 +111,11 @@ img {
     #train.show { 
         opacity: 1; 
     }
-    #train em {
+    #train p {
+        transition: opacity .2s;
+    }
+    #train .fade {
         opacity: .7;
-        font-style: normal;
     }
     #train strong {
         padding: 0 5px;

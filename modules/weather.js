@@ -78,9 +78,7 @@ module.exports = class WeatherModule extends Component {
         query.exec((err, data) => {
             if (err) return this.setState({data: null})
 
-            let location = data.query.results.channel.location
-            let condition = data.query.results.channel.item.condition
-
+            let {location, item: {condition}} = data.query.results.channel
             this.setState({data: {location, condition}})
         })
     }
