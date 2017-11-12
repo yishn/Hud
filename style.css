@@ -66,13 +66,13 @@ img {
 #clock {
     margin: 0;
     font-size: 5.5em;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 #date {
     margin-top: 0;
     font-size: 1.75em;
-    line-height: 1.2;
+    line-height: 1.1;
 }
 
 #greeter {
@@ -80,6 +80,11 @@ img {
     }
     #greeter.show {
         opacity: 1;
+}
+
+#system p {
+    display: inline;
+    margin-left: 1em;
 }
 
 #calendar {
