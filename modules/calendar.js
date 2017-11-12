@@ -22,8 +22,8 @@ module.exports = class CalendarModule extends Component {
         let data = []
         let counter = 0
 
-        let listener = (error, _, body) => {
-            if (error) return this.setState({data: null})
+        let listener = (err, _, body) => {
+            if (err) return this.setState({data: null})
 
             let d = new Date()
 
@@ -33,19 +33,18 @@ module.exports = class CalendarModule extends Component {
 
                 if (!startDate) return false
 
-                return x.type == 'VEVENT'
-                && (d - startDate > 0
+                return x.type == 'VEVENT' && (
+                    d - startDate > 0
                     && endDate && endDate - d > 0
                     ||
                     startDate - d > 0
-                    && startDate.getFullYear() == d.getFullYear()
-                    && startDate.getMonth() == d.getMonth()
-                    && startDate.getDate() == d.getDate())
+                    && startDate.toDateString() === d.toDateString()
+                )
             })
 
             data = data.concat(response)
 
-            if (++counter == this.props.url.length) {
+            if (++counter === this.props.url.length) {
                 data.sort((x, y) => y.startDate - x.startDate)
                 this.setState({data})
             }
@@ -56,17 +55,17 @@ module.exports = class CalendarModule extends Component {
 
     render({offset}, {data}) {
         return h('li', {id: 'calendar', class: data != null && 'show'},
-            data != null && data.length > 0 && (item => {
+            data != null && data.map(item => {
                 let startDate = new Date(item.startDate.getTime() + offset)
                 let time = ''
 
-                if (startDate.getHours() != 0 || startDate.getMinutes() != 0)
+                if (startDate.getHours() !== 0 || startDate.getMinutes() !== 0)
                     time = startDate.getHours() + ':' + (startDate.getMinutes() < 10 ? '0' : '') + startDate.getMinutes()
 
-                return [
+                return h('p', {}, 
                     h('strong', {}, time), ' ', item.name
-                ]
-            })(data[0])
+                )
+            })
         )
     }
 }
