@@ -14,9 +14,13 @@ module.exports = class LunchModule extends Component {
     }
 
     componentDidMount() {
+        this.componentDidUpdate()
+    }
+
+    componentDidUpdate() {
         this.update()
 
-        setInterval(() => {
+        setTimeout(() => {
             let date = new Date()
 
             this.setState({date})
@@ -35,8 +39,8 @@ module.exports = class LunchModule extends Component {
 
         JSDOM.fromURL(url).then(({window: {document: dom}}) => {
             let items = [...dom.querySelectorAll([
-                'body', 'table', 'tbody', 'tr:nth-child(1)', 'td.Stage', 
-                'table', 'tbody', 'tr:nth-child(6)', 'td', 
+                'body', 'table', 'tbody', 'tr:nth-child(1)', 'td.Stage',
+                'table', 'tbody', 'tr:nth-child(6)', 'td',
                 'table', 'tbody', 'tr', 'td', 'div:nth-child(1)', 'p'
             ].join('>'))].filter(p => p.textContent.trim() !== '').map((p, i) => ({
                 date: new Date(date.getTime() + (i - day) * dayDuration),
@@ -67,8 +71,8 @@ module.exports = class LunchModule extends Component {
                     isNaN(x) ? (x.length === 0 ? '' : x[0].toUpperCase()) : x
                 ).join('')), ' ',
 
-                item.value.length < maxlength 
-                ? item.value 
+                item.value.length < maxlength
+                ? item.value
                 : item.value.slice(0, Math.max(maxlength - 3, 0)).trim() + '…'
             ))
         )
