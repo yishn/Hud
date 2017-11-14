@@ -32,7 +32,7 @@ module.exports = class TrainModule extends Component {
             }))
 
             this.setState({data: {name, items}})
-        })
+        }).catch(err => this.setState({data: null}))
     }
 
     render({threshold, maxcount, replace, fadeout}, {data}) {

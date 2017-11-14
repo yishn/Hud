@@ -51,7 +51,7 @@ module.exports = class LunchModule extends Component {
             }))
 
             this.setState({date, data: {items}})
-        })
+        }).catch(err => this.setState({data: null}))
     }
 
     render({start, end, maxlength}, {date, data}) {
