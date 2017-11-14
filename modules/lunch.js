@@ -23,8 +23,6 @@ module.exports = class LunchModule extends Component {
         setTimeout(() => {
             let date = new Date()
 
-            this.setState({date})
-
             if (this.props.start <= date.getHours() && date.getHours() <= this.props.end) {
                 this.update()
             }
@@ -32,7 +30,7 @@ module.exports = class LunchModule extends Component {
     }
 
     update() {
-        let {date} = this.state
+        let date = new Date()
         let day = (date.getDay() || 7) - 1
 
         let url = 'http://sap-lunch-menu.appspot.com'
@@ -52,7 +50,7 @@ module.exports = class LunchModule extends Component {
                 })).filter(item => item.category.indexOf('Hauptgang') === 0)
             }))
 
-            this.setState({data: {items}})
+            this.setState({date, data: {items}})
         })
     }
 
