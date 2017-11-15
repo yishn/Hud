@@ -37,9 +37,9 @@ module.exports = class TrainModule extends Component {
 
     render({threshold, maxcount, replace, fadeout}, {data}) {
         return h('li', {id: 'train', class: data != null && 'show'},
-            data != null && data.items.filter((x, i) => {
+            data != null && data.items.filter(x => {
                 x.time = Math.round((x.time - new Date()) / 1000 / 60)
-                return i >= data.items.length - maxcount - 1 && x.time <= threshold && x.time > 0
+                return x.time <= threshold && x.time > 0
             }).map((item, i) => {
                 let destination = item.destination.split(',')[0].trim()
 
@@ -52,11 +52,11 @@ module.exports = class TrainModule extends Component {
 
                     h('strong', {}, item.id.split(/\s+/).map(x =>
                         isNaN(x) ? (x.length === 0 ? '' : x[0].toUpperCase()) : x
-                    ).join('')), ' ', 
+                    ).join('')), ' ',
 
                     destination
                 )
-            })
+            }).slice(-maxcount)
         )
     }
 }
