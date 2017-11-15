@@ -15,15 +15,15 @@ module.exports = class DateModule extends Component {
     }
 
     componentDidMount() {
-        this.componentDidUpdate()
+        this.update()
     }
 
-    componentDidUpdate() {
+    update() {
+        this.setState({date: new Date()})
+
         let seconds = this.state.date.getSeconds()
 
-        setTimeout(() => {
-            this.setState({date: new Date()})
-        }, (60 - seconds) * 1000)
+        setTimeout(() => this.update(), (60 - seconds) * 1000)
     }
 
     render(_, {date}) {

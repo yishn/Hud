@@ -14,23 +14,23 @@ module.exports = class LunchModule extends Component {
     }
 
     componentDidMount() {
-        this.componentDidUpdate()
-    }
-
-    componentDidUpdate() {
         this.update()
-
-        setTimeout(() => {
-            let date = new Date()
-
-            if (this.props.start <= date.getHours() && date.getHours() <= this.props.end) {
-                this.update()
-            }
-        }, (60 - new Date().getMinutes()) * 60000)
     }
 
     update() {
         let date = new Date()
+
+        this.setState({date})
+
+        if (this.props.start <= date.getHours() && date.getHours() <= this.props.end) {
+            this.retrieve()
+        }
+
+        setTimeout(() => this.update(), (60 - date.getMinutes()) * 60000)
+    }
+
+    retrieve() {
+        let {date} = this.state
         let day = (date.getDay() || 7) - 1
 
         let url = 'http://sap-lunch-menu.appspot.com'
