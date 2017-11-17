@@ -103,6 +103,10 @@ img {
     }
     #lunch.show {
         opacity: 1;
+    }
+    #lunch strong {
+        text-transform: uppercase;
+        font-size: .8em;
 }
 
 #train {
