@@ -1,7 +1,7 @@
 const {h, Component} = require('preact')
 
-function choose() {
-    return arguments[Math.floor(Math.random() * arguments.length)]
+function choose(...args) {
+    return args[Math.floor(Math.random() * args.length)]
 }
 
 module.exports = class GreeterModule extends Component {
@@ -36,6 +36,7 @@ module.exports = class GreeterModule extends Component {
             )
         else if (12 <= hour && hour < 18)
             text = choose(
+                'Welcome back',
                 'Greetings',
                 'Good afternoon',
                 'Good day',
@@ -43,13 +44,14 @@ module.exports = class GreeterModule extends Component {
             )
         else if (18 <= hour && hour <= 23)
             text = choose(
+                'Welcome back',
                 'Good evening',
                 'Did you have a nice day?',
                 'How was your day?'
             )
 
-        if (name.trim() != '') {
-            let question = text[text.length - 1] == '?'
+        if (name.trim() !== '') {
+            let question = text[text.length - 1] === '?'
             if (question) text = text.slice(0, text.length - 1)
 
             text += ', ' + name
