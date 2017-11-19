@@ -29,13 +29,15 @@ module.exports = class LunchModule extends Component {
         setTimeout(() => this.update(), (60 - date.getMinutes()) * 60000)
     }
 
-    retrieve() {
+    async retrieve() {
         let {date} = this.state
         let day = (date.getDay() || 7) - 1
 
         let url = 'http://sap-lunch-menu.appspot.com'
 
-        JSDOM.fromURL(url).then(({window: {document: dom}}) => {
+        try {
+            let {window: {document: dom}} = await JSDOM.fromURL(url)
+
             let items = [...dom.querySelectorAll([
                 'body', 'table', 'tbody', 'tr:nth-child(1)', 'td.Stage',
                 'table', 'tbody', 'tr:nth-child(6)', 'td',
@@ -51,7 +53,9 @@ module.exports = class LunchModule extends Component {
             }))
 
             this.setState({date, data: {items}})
-        }).catch(err => this.setState({data: null}))
+        } catch (err) {
+            this.setState({data: null})
+        }
     }
 
     render({start, end, maxlength}, {date, data}) {

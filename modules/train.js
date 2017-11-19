@@ -15,14 +15,16 @@ module.exports = class TrainModule extends Component {
         setInterval(() => this.update(), this.props.interval)
     }
 
-    update() {
+    async update() {
         let url = [
             'http://reiseauskunft.bahn.de/bin/bhftafel.exe/dn',
             '?ld=9646&rt=1&boardType=dep&time=actual&productsFilter=111111111&start=yes&input=',
             encodeURIComponent(this.props.station)
         ].join('')
 
-        JSDOM.fromURL(url).then(({window: {document: dom}}) => {
+        try {
+            let {window: {document: dom}} = await JSDOM.fromURL(url)
+            
             let name = dom.querySelector('input#rplc0').value
             let dateString = new Date().toDateString()
             let items = [...dom.querySelectorAll('tr[id^="journeyRow_"]')].map(tr => ({
@@ -32,7 +34,9 @@ module.exports = class TrainModule extends Component {
             }))
 
             this.setState({data: {name, items}})
-        }).catch(err => this.setState({data: null}))
+        } catch (err) {
+            this.setState({data: null})
+        }
     }
 
     render({threshold, maxcount, replace, fadeout}, {data}) {
