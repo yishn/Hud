@@ -28,14 +28,17 @@ module.exports = class DateModule extends Component {
 
     render(_, {date}) {
         let day = date.getDate()
-        let th = 'th'
 
-        if (day < 10 || day >= 20) {
-            th = day % 10 == 1 ? 'st' : (day % 10 == 2 ? 'nd' : (day % 10 == 3 ? 'rd' : 'th'))
-        }
+        return h('li', {id: 'date'}, 
+            days[date.getDay()], ', ', 
+            
+            day, day >= 10 && day <= 20 ? 'th'
+                : day % 10 == 1 ? 'st' 
+                : day % 10 == 2 ? 'nd' 
+                : day % 10 == 3 ? 'rd' 
+                : 'th', ' ', 
 
-        let text = days[date.getDay()] + ', ' + day + th + ' ' + months[date.getMonth()]
-
-        return h('li', {id: 'date'}, text)
+            months[date.getMonth()]
+        )
     }
 }

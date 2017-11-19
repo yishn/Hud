@@ -26,8 +26,9 @@ module.exports = class ClockModule extends Component {
         let minutes = date.getMinutes()
 
         if (minutes < 10) minutes = `0${minutes}`
-        let text = hours + ':' + minutes
 
-        return h('li', {id: 'clock'}, text)
+        return h('li', {id: 'clock'},
+            hours, h('span', {class: 'colon'}, ':'), minutes
+        )
     }
 }
