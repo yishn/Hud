@@ -7,9 +7,10 @@ My desktop HUD.
 ## Modules
 
 - Weather — *Uses Yahoo Weather service*
-- Clock
-- Date
-- Greeter
+- Clock — *Shows local time*
+- Date — *Shows local date*
+- Greeter — *Greets you when you open Hud*
+- System — *Shows CPU and memory usage*
 - Calendar — *Ability to download `ics` files from the internet*
 - Lunch — *Displays lunch main menu items at SAP Headquarters*
 - Train — *Displays [Deutsche Bahn](https://bahn.de/) data*
