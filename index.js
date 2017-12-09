@@ -11,6 +11,11 @@ class App extends Component {
     }
 
     componentDidMount() {
+        this.resize()
+        screen.on('display-metrics-changed', () => this.resize())
+    }
+
+    resize() {
         let {workArea} = screen.getPrimaryDisplay()
         this.window.setBounds(workArea)
     }
