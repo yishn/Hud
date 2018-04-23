@@ -15,6 +15,10 @@
         "interval": 3600000,
         "offset": 0
     },
+    "stocks": {
+        "symbols": ["SAP"],
+        "interval": 60000
+    },
     "lunch": {
         "start": 12,
         "end": 13,
@@ -34,8 +38,9 @@
         "date",
         "system",
         "greeter",
-        "lunch",
+        "stocks",
         "calendar",
+        "lunch",
         "train"
     ]
 }
