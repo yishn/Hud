@@ -17,6 +17,7 @@
     },
     "stocks": {
         "symbols": ["SAP"],
+        "currency": "EUR",
         "interval": 60000
     },
     "lunch": {
