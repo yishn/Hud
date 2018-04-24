@@ -1,8 +1,5 @@
 const {h, Component} = require('preact')
-const currencySwap = require('node-currency-swap')
 const xmljs = require('xml-js')
-
-const rateData =
 
 module.exports = class Stocks extends Component {
     constructor(props) {
@@ -63,7 +60,13 @@ module.exports = class Stocks extends Component {
             this.state.data && this.props.symbols.map(symbol =>
                 h('p', {},
                     h('strong', {}, symbol.toUpperCase()), ' ',
-                    h('span', {}, this.state.prices[symbol].value, ' ', this.state.prices[symbol].currency)
+                    h('span', {}, this.state.prices[symbol].value, ' ', this.state.prices[symbol].currency), ' ',
+                    h('span', {class: 'change'},
+                        '(', h('img', {src: `./node_modules/octicons/build/svg/arrow-small-${
+                            this.state.data[symbol].quote.changePercent > 0 ? 'up' : 'down'
+                        }.svg`}), ' ',
+                        Math.round(this.state.data[symbol].quote.changePercent * 10000) / 100, '%)'
+                    )
                 )
             )
         )

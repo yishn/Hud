@@ -34,7 +34,7 @@ a, img {
 }
 
 img {
-    vertical-align: bottom;
+    vertical-align: middle;
 }
 
 /**
@@ -102,6 +102,21 @@ img {
         opacity: 1;
 }
 
+#stocks {
+        font-size: .8em;
+        opacity: 0;
+    }
+    #stocks.show {
+        opacity: 1;
+    }
+    #stocks .change {
+        opacity: .7;
+    }
+    #stocks .change img {
+        filter: invert(100%);
+        height: 1.6em;
+}
+
 #lunch {
         opacity: 0;
     }
@@ -116,8 +131,8 @@ img {
 #train {
         opacity: 0;
     }
-    #train.show { 
-        opacity: 1; 
+    #train.show {
+        opacity: 1;
     }
     #train p {
         transition: opacity .2s;

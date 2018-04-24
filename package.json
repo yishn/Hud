@@ -9,6 +9,7 @@
     "ics-parser": "^0.1.5",
     "jsdom": "^11.3.0",
     "node-currency-swap": "^1.0.6",
+    "octicons": "^7.2.0",
     "os-utils": "0.0.14",
     "preact": "^8.2.6",
     "request": "^2.83.0",
